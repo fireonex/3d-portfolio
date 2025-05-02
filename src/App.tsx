@@ -1,16 +1,14 @@
 import './App.css'
 import {Route, BrowserRouter as Router, Routes} from 'react-router-dom'
-import {Home} from "./components/Home.tsx";
-import {About} from "./components/About.tsx";
-import {Projects} from "./components/Projects.tsx";
-import {Contact} from "./components/Contact.tsx";
+import {Home, About, Projects, Contact} from "./pages";
+import {Navbar} from "./components/Navbar.tsx";
 
 function App() {
 
     return (
         <main className={'bg-gray-500'}>
             <Router>
-                Navbar
+                <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/about" element={<About/>}/>
