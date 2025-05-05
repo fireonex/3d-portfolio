@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.14.5",
     "@remix-run/router": "^1.23.0",
     "clsx": "^2.1.1",
+    "leva": "^0.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
