@@ -6,13 +6,14 @@ Source: https://sketchfab.com/3d-models/fantastic-castle-08a018e4e7b3486dbec7b03
 Title: Fantastic castle
 */
 
-import {useRef} from 'react'
+import {useEffect, useRef} from 'react'
 import {useGLTF} from '@react-three/drei'
 // @ts-ignore
 import castleScene from "../../assets/fantastic_castle.glb";
 import {GLTF} from "three-stdlib";
 import {a} from "@react-spring/three"
 import * as THREE from "three";
+import {useFrame, useThree} from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -30,10 +31,90 @@ type GLTFResult = GLTF & {
         ['.004']: THREE.MeshStandardMaterial
     }
 }
+type Props = {
+    isRotating: boolean
+    setIsRotating: (isRotating: boolean) => void
+    position: any
+    scale: any
+    rotation: any
+    setCurrentStage: (stage: number) => void
+}
 
-export function Castle(props: any) {
-    const castleRef = useRef()
-    const { nodes, materials } = useGLTF(castleScene) as unknown as GLTFResult
+export function Castle({isRotating, setIsRotating, setCurrentStage, ...props}: Props) {
+    const castleRef = useRef<THREE.Group>(null)
+    const {gl, viewport} = useThree()
+    const {nodes, materials} = useGLTF(castleScene) as GLTFResult
+
+    const lastX = useRef(0)
+    const rotationSpeed = useRef(0)
+    const dampingFactor = 0.95
+
+    const handlePointerDown = (e: PointerEvent | TouchEvent) => {
+        e.preventDefault()
+        setIsRotating(true)
+        const clientX = 'touches' in e ? e.touches[0].clientX : (e as PointerEvent).clientX
+        lastX.current = clientX
+    }
+
+    const handlePointerUp = () => {
+        setIsRotating(false)
+    }
+
+    const handlePointerMove = (e: PointerEvent | TouchEvent) => {
+        if (!isRotating || !castleRef.current) return
+        const clientX = 'touches' in e ? e.touches[0].clientX : (e as PointerEvent).clientX
+        const delta = (clientX - lastX.current) / viewport.width
+        castleRef.current.rotation.y += delta * 0.01 * Math.PI
+        lastX.current = clientX
+        rotationSpeed.current = delta * 0.01 * Math.PI
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+        if (!castleRef.current) return
+        if (e.key === 'ArrowLeft') {
+            setIsRotating(true)
+            castleRef.current.rotation.y += 0.01 * Math.PI
+        } else if (e.key === 'ArrowRight') {
+            setIsRotating(true)
+            castleRef.current.rotation.y -= 0.01 * Math.PI
+        }
+    }
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            setIsRotating(false)
+        }
+    }
+
+    useEffect(() => {
+        const canvas = gl.domElement
+        canvas.addEventListener('pointerdown', handlePointerDown)
+        canvas.addEventListener('pointerup', handlePointerUp)
+        canvas.addEventListener('pointermove', handlePointerMove)
+        window.addEventListener('keydown', handleKeyDown)
+        window.addEventListener('keyup', handleKeyUp)
+
+        return () => {
+            canvas.removeEventListener('pointerdown', handlePointerDown)
+            canvas.removeEventListener('pointerup', handlePointerUp)
+            canvas.removeEventListener('pointermove', handlePointerMove)
+            window.removeEventListener('keydown', handleKeyDown)
+            window.removeEventListener('keyup', handleKeyUp)
+        }
+    }, [gl, isRotating])
+
+    useFrame(() => {
+        if (!castleRef.current) return
+
+        if (!isRotating) {
+            rotationSpeed.current *= dampingFactor
+            if (Math.abs(rotationSpeed.current) < 0.001) {
+                rotationSpeed.current = 0
+            }
+            castleRef.current.rotation.y += rotationSpeed.current
+        }
+    })
+
     return (
         <a.group {...props} ref={castleRef}>
             <group rotation={[-Math.PI / 2, 0, 0]} scale={0.01} position={props.position || [0, -2, 0]}>
