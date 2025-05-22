@@ -113,6 +113,14 @@ export function Castle({isRotating, setIsRotating, setCurrentStage, ...props}: P
             }
             castleRef.current.rotation.y += rotationSpeed.current
         }
+
+        // Определяем текущий этап на основе угла поворота
+        const rotation = castleRef.current.rotation.y;
+        const normalizedRotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+
+        // Разделяем полный оборот (2π) на 4 этапа
+        const stage = Math.floor(normalizedRotation / (Math.PI / 2)) + 1;
+        setCurrentStage(stage > 4 ? 1 : stage);
     })
 
     return (
