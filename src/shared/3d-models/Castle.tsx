@@ -64,7 +64,9 @@ export function Castle({isRotating, setIsRotating, setCurrentStage, ...props}: P
         if (!isRotating || !castleRef.current) return
         const clientX = 'touches' in e ? e.touches[0].clientX : (e as PointerEvent).clientX
         const delta = (clientX - lastX.current) / viewport.width
-        castleRef.current.rotation.y += delta * 0.01 * Math.PI
+        const rotationSensitivity = window.innerWidth < 768 ? 0.05 : 0.01;
+        castleRef.current.rotation.y += delta * rotationSensitivity * Math.PI;
+        // castleRef.current.rotation.y += delta * 0.01 * Math.PI
         lastX.current = clientX
         rotationSpeed.current = delta * 0.01 * Math.PI
     }
@@ -90,38 +92,42 @@ export function Castle({isRotating, setIsRotating, setCurrentStage, ...props}: P
         const canvas = gl.domElement
         canvas.addEventListener('pointerdown', handlePointerDown)
         canvas.addEventListener('pointerup', handlePointerUp)
-        canvas.addEventListener('pointermove', handlePointerMove)
+        canvas.addEventListener('pointermove', handlePointerMove as EventListener, {passive: false} as any)
         window.addEventListener('keydown', handleKeyDown)
         window.addEventListener('keyup', handleKeyUp)
 
         return () => {
             canvas.removeEventListener('pointerdown', handlePointerDown)
             canvas.removeEventListener('pointerup', handlePointerUp)
-            canvas.removeEventListener('pointermove', handlePointerMove)
+            canvas.removeEventListener('pointermove', handlePointerMove as EventListener, {passive: false} as any)
             window.removeEventListener('keydown', handleKeyDown)
             window.removeEventListener('keyup', handleKeyUp)
         }
     }, [gl, isRotating])
 
     useFrame(() => {
-        if (!castleRef.current) return
+        if (!castleRef.current) return;
 
+        // Плавное затухание вращения
         if (!isRotating) {
-            rotationSpeed.current *= dampingFactor
+            rotationSpeed.current *= dampingFactor;
             if (Math.abs(rotationSpeed.current) < 0.001) {
-                rotationSpeed.current = 0
+                rotationSpeed.current = 0;
             }
-            castleRef.current.rotation.y += rotationSpeed.current
         }
+
+        // Ограничиваем скорость (на всякий случай)
+        rotationSpeed.current = Math.min(rotationSpeed.current, 0.1);
+
+        // Применяем вращение
+        castleRef.current.rotation.y += rotationSpeed.current;
 
         // Определяем текущий этап на основе угла поворота
         const rotation = castleRef.current.rotation.y;
         const normalizedRotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-
-        // Разделяем полный оборот (2π) на 4 этапа
         const stage = Math.floor(normalizedRotation / (Math.PI / 2)) + 1;
         setCurrentStage(stage > 4 ? 1 : stage);
-    })
+    });
 
     return (
         <a.group {...props} ref={castleRef}>

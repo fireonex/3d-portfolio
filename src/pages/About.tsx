@@ -14,9 +14,8 @@ export const About = () => {
             </h1>
             <div className={'mt-5 flex flex-col gap-3 text-slate-500'}>
                 <p>
-                    Software Engineer based in Russia, specializing in technical education through hands-on learning
-                    and
-                    building applications.
+                    Фронтенд-разработчик из России, специализируюсь на создании качественных и эффективных приложений с
+                    вниманием к деталям, визуальной привлекательности и удобству использования.
                 </p>
             </div>
             <div className={'py-10 flex flex-col'}>

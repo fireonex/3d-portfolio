@@ -8,10 +8,11 @@ Title: Adult Dragon
 
 import * as THREE from 'three'
 import {useEffect, useRef} from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import {useGLTF, useAnimations} from '@react-three/drei'
+import {GLTF} from 'three-stdlib'
 // @ts-ignore
 import scene from "../../assets/low_poly_dragon.glb"
+import {GroupProps} from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -24,16 +25,19 @@ type GLTFResult = GLTF & {
 }
 
 
+type Props = GroupProps & {
+    animationSpeed?: number;
+};
+
+
 export function DragonForContact({
                                      animationSpeed = 1,
                                      ...props
-                                 }: JSX.IntrinsicElements['group'] & {
-    animationSpeed?: number
-}) {
+                                 }: Props) {
     const currentAnimation = 'cyclewalk'
     const group = useRef<THREE.Group>(null)
-    const { nodes, materials, animations } = useGLTF(scene) as GLTFResult
-    const { actions } = useAnimations(animations, group)
+    const {nodes, materials, animations} = useGLTF(scene) as GLTFResult
+    const {actions} = useAnimations(animations, group)
 
     useEffect(() => {
         if (!actions) return
@@ -58,66 +62,66 @@ export function DragonForContact({
                             position={[15.333, 12.533, 17.243]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp_1" />
+                            <group name="Lamp_1"/>
                         </group>
                         <group
                             name="Lamp001"
                             position={[-15.333, 12.533, 17.243]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp001_1" />
+                            <group name="Lamp001_1"/>
                         </group>
                         <group
                             name="Lamp002"
                             position={[-15.333, -12.342, 17.243]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp002_1" />
+                            <group name="Lamp002_1"/>
                         </group>
                         <group
                             name="Lamp003"
                             position={[15.333, -12.342, 17.243]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp003_1" />
+                            <group name="Lamp003_1"/>
                         </group>
                         <group
                             name="Lamp004"
                             position={[15.333, -12.342, -12.763]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp004_1" />
+                            <group name="Lamp004_1"/>
                         </group>
                         <group
                             name="Lamp005"
                             position={[-15.333, -12.342, -12.763]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp005_1" />
+                            <group name="Lamp005_1"/>
                         </group>
                         <group
                             name="Lamp006"
                             position={[-15.333, 12.533, -12.763]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp006_1" />
+                            <group name="Lamp006_1"/>
                         </group>
                         <group
                             name="Lamp007"
                             position={[15.333, 12.533, -12.763]}
                             rotation={[-0.268, 0.602, 1.932]}
                             scale={2.644}>
-                            <group name="Lamp007_1" />
+                            <group name="Lamp007_1"/>
                         </group>
                         <group name="Ossos" position={[0, 0.041, -0.015]}>
-                            <primitive object={nodes.Ossos_rootJoint} />
+                            <primitive object={nodes.Ossos_rootJoint}/>
                             <skinnedMesh
                                 name="Cube_0"
                                 geometry={nodes.Cube_0.geometry}
                                 material={materials.Material}
                                 skeleton={nodes.Cube_0.skeleton}
                             />
-                            <group name="Cube" position={[0, -0.063, 1.194]} scale={0.507} />
+                            <group name="Cube" position={[0, -0.063, 1.194]} scale={0.507}/>
                         </group>
                     </group>
                 </group>

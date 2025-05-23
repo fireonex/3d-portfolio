@@ -6,9 +6,9 @@ import * as THREE from "three";
 
 type Props = {
     isRotating: boolean;
-    rotation: [number, number, number];
-    dragonplaneScale: [number, number, number];
-    dragonplanePosition: [number, number, number];
+    rotation: number | number[];
+    dragonplaneScale: number | number[];
+    dragonplanePosition: number | number[];
 };
 
 export const Dragon = ({

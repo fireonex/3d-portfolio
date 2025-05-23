@@ -10,6 +10,9 @@ type FormState = {
     email: string;
     message: string;
 };
+
+type modelValues = [number, number, number]
+
 export const Contact = () => {
     const [form, setForm] = useState<FormState>({
         name: '',
@@ -20,23 +23,26 @@ export const Contact = () => {
     //const formRef = useRef<HTMLFormElement>(null);
     const [animationSpeed, setAnimationSpeed] = useState(0.5)
     const {alert, showAlert, hideAlert} = useAlert()
-    // const position = useControls('Dragon Position', {
-    //     x: { value: 0.5, min: -5, max: 5, step: 0.1 },
-    //     y: { value: 0.35, min: -5, max: 5, step: 0.1 },
-    //     z: { value: 0, min: -5, max: 5, step: 0.1 },
-    // });
-    //
-    // const rotation = useControls('Dragon Rotation', {
-    //     rotX: { value: 12, min: -Math.PI, max: Math.PI, step: 0.1 },
-    //     rotY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
-    //     rotZ: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
-    // });
-    //
-    // const scale = useControls('Dragon Scale', {
-    //     scaleX: { value: 0.5, min: 0.1, max: 5, step: 0.1 },
-    //     scaleY: { value: 0.5, min: 0.1, max: 5, step: 0.1 },
-    //     scaleZ: { value: 0.5, min: 0.1, max: 5, step: 0.1 },
-    // });
+    const adjustDragonForScreenSize = (): modelValues[] => {
+        let screenScale: modelValues = [2.1, 2.1, 2.1];
+        let screenPosition: modelValues = [0.3, -1.8, -0.3];
+        let rotation: modelValues = [0, -0.5, 0];
+
+        if (window.innerWidth < 1024) {
+            screenPosition = [0.3, -0.4, -0.3];
+            rotation = [0.3, -0.7, 0];
+        }
+        if (window.innerWidth < 768) {
+            screenScale = [2.3, 2.3, 2.3];
+            screenPosition = [0.3, -1, 0];
+            rotation = [0.2, -0.6, 0.0];
+        }
+
+        return [screenScale, screenPosition, rotation];
+    };
+
+
+    const [dragonScale, dragonPosition, dragonRotation] = adjustDragonForScreenSize()
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({
             ...form,
@@ -57,8 +63,6 @@ export const Contact = () => {
             message: form.message,
             time: new Date().toLocaleString()
         };
-
-        console.log("Отправляемые параметры:", templateParams);
 
         emailjs.send(
             import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -89,8 +93,10 @@ export const Contact = () => {
     const handleBlur = () => {
         setAnimationSpeed(0.5)
     };
+
+
     return (
-        <section className={'relative flex lg:flex-row flex-col max-container h-[100vh]'}>
+        <section className={'relative flex lg:flex-row flex-col max-container h-full lg:h-[100vh] gap-5'}>
             {alert.show && <Alert type={alert.type} text={alert.text}/>}
             <div className={'flex-1 min-w-[50%] flex flex-col'}>
                 <h1 className={'head-text'}>Get in Touch</h1>
@@ -138,7 +144,7 @@ export const Contact = () => {
                     <button type={'submit'}
                             className={'btn'}
                             disabled={isLoading}
-                            // onChange={handleChange}
+                        // onChange={handleChange}
                             onFocus={handleFocus}
                             onBlur={handleBlur}
                             onSubmit={() => handleSubmit}
@@ -147,36 +153,15 @@ export const Contact = () => {
                     </button>
                 </form>
             </div>
-            <div className={'lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'}>
+            <div className={'lg:w-1/2 w-full lg:h-auto h-[350px]'}>
                 <Canvas camera={{position: [0, 0, 5]}} className={'bg-transparent'}>
-                    {/*<directionalLight*/}
-                    {/*    intensity={0.5}*/}
-                    {/*    position={[3, 3, 3]}*/}
-                    {/*    castShadow*/}
-                    {/*/>*/}
                     <ambientLight intensity={0.5}/>
-                    {/*<pointLight position={[2, 2, 2]} intensity={1.5}/>*/}
-                    {/*<spotLight*/}
-                    {/*    position={[5, 5, 5]}*/}
-                    {/*    angle={0.3}*/}
-                    {/*    penumbra={1}*/}
-                    {/*    intensity={7}*/}
-                    {/*    castShadow*/}
-                    {/*/>*/}
                     <Suspense fallback={<Loader/>}>
-                        {/*<DragonForContact position={[0.5, 0.35, 0]} rotation={[0, 0, 0]} scale={[0.5, 0.5, 0.5]}/>*/}
-                        {/*<DragonForContact*/}
-                        {/*    currentAnimation={currentAnimation}*/}
-                        {/*    animationSpeed={animationSpeed}*/}
-                        {/*    position={[position.x, position.y, position.z]}*/}
-                        {/*    rotation={[rotation.rotX, rotation.rotY, rotation.rotZ]}*/}
-                        {/*    scale={[scale.scaleX, scale.scaleY, scale.scaleZ]}*/}
-                        {/*/>*/}
                         <DragonForContact
                             animationSpeed={animationSpeed}
-                            position={[-0.6, -1.1, -0.3]}
-                            rotation={[0, -0.5, 0]}
-                            scale={[1.6, 1.6, 1.6]}
+                            position={dragonPosition}
+                            rotation={dragonRotation}
+                            scale={dragonScale}
                         />
                     </Suspense>
                 </Canvas>

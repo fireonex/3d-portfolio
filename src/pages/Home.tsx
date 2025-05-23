@@ -13,15 +13,29 @@ export const Home = () => {
         let screenPosition = [-3, -10.5, -26];
         let rotation = [0.1, 3.14, 0]
         if (window.innerWidth < 768) {
-            screenScale = 0.01;
+            screenScale = 0.12;
+            screenPosition = [-3, -11.5, -26];
         } else {
             screenScale = 0.19;
         }
         return [screenScale, screenPosition, rotation];
     }
 
+    const adjustDragonForScreenSize = () => {
+        let screenScale = 3;
+        let screenPosition = [-9, -11, 0];
+        let rotation = [0, 0.1, 0.08]
+        if (window.innerWidth < 768) {
+            screenScale = 2;
+            screenPosition = [-4, -8, 0];
+            rotation = [0, -0.1, 0.1]
+        }
+        return [screenScale, screenPosition, rotation];
+    }
+
+
     const [castleScale, castlePosition, islandRotation] = adjustCastleForScreenSize()
-    // const [dragonplaneScale, dragonplanePosition] = adjustDragonPlaneForScreenSize()
+    const [dragonplaneScale, dragonplanePosition, dragonplaneRotation] = adjustDragonForScreenSize()
     return (
         <section className={'w-full h-screen relative'}>
             <div className={'absolute top-28 left-0 right-0 z-10 flex items-center justify-center'}>
@@ -44,12 +58,14 @@ export const Home = () => {
                     />
                     <Dragon
                         isRotating={isRotating}
-                        rotation={[0, 0.10, 0.08]}
-                        dragonplaneScale={[3, 3, 3]}
-                        dragonplanePosition={[-9, -11, 0]}
+                        rotation={dragonplaneRotation}
+                        dragonplaneScale={dragonplaneScale}
+                        dragonplanePosition={dragonplanePosition}
                     />
                 </Suspense>
             </Canvas>
         </section>
     );
 };
+
+

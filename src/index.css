@@ -116,11 +116,11 @@ body {
     }
 
     .input {
-        @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
+        @apply bg-white border border-gray-200 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
     }
 
     .textarea {
-        @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+        @apply block p-2.5 w-full resize-none min-h-32 sm:min-h-40 text-base text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
     }
 
     .btn {
@@ -154,4 +154,34 @@ body {
     .cta-text {
         @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
     }
+}
+
+
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+}
+.loader::before,
+.loader::after {
+    content:"";
+    grid-area: 1/1;
+    --c:no-repeat radial-gradient(farthest-side,#2b77e7 92%,#0000);
+    background:
+            var(--c) 50%  0,
+            var(--c) 50%  100%,
+            var(--c) 100% 50%,
+            var(--c) 0    50%;
+    background-size: 12px 12px;
+    animation: l12 1s infinite;
+}
+.loader::before {
+    margin: 4px;
+    filter: hue-rotate(45deg);
+    background-size: 8px 8px;
+    animation-timing-function: linear
+}
+
+@keyframes l12 {
+    100%{transform: rotate(.5turn)}
 }
