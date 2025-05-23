@@ -1,7 +1,7 @@
 import {Canvas} from "@react-three/fiber";
 import {Suspense, useState} from "react";
-import {Loader} from "../shared/components";
-import {Castle, Dragon, Sky} from "../shared/3d-models"
+import {Loader} from "../shared";
+import {Castle, Dragon, Sky} from "../shared"
 import {cn} from "../shared";
 import {HomeInfo} from "../components";
 

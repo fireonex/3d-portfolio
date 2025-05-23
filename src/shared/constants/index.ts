@@ -1,29 +1,24 @@
-import { meta, shopify, starbucks, tesla } from "../../assets/images";
+import { afishus, inctbc } from "../../assets/images";
 import {
-    car,
     contact,
     css,
-    estate,
+    radixUI,
+    storybook,
+    styledComponents,
+    snake,
     express,
-    git,
     github,
     html,
     javascript,
-    linkedin,
-    mongodb,
-    motion,
     mui,
     nextjs,
     nodejs,
-    pricewise,
     react,
     redux,
     sass,
     snapgram,
-    summiz,
     tailwindcss,
-    threads,
-    typescript
+    typescript, telegram, wizard, todoApp
 } from "../../assets/icons";
 
 export const skills = [
@@ -36,11 +31,6 @@ export const skills = [
         imageUrl: express,
         name: "Express",
         type: "Backend",
-    },
-    {
-        imageUrl: git,
-        name: "Git",
-        type: "Version Control",
     },
     {
         imageUrl: github,
@@ -56,16 +46,6 @@ export const skills = [
         imageUrl: javascript,
         name: "JavaScript",
         type: "Frontend",
-    },
-    {
-        imageUrl: mongodb,
-        name: "MongoDB",
-        type: "Database",
-    },
-    {
-        imageUrl: motion,
-        name: "Motion",
-        type: "Animation",
     },
     {
         imageUrl: mui,
@@ -89,8 +69,18 @@ export const skills = [
     },
     {
         imageUrl: redux,
-        name: "Redux",
+        name: "Redux, RTK, RTK Query",
         type: "State Management",
+    },
+    {
+        imageUrl: radixUI,
+        name: "Radix UI",
+        type: "Frontend",
+    },
+    {
+        imageUrl: styledComponents,
+        name: "Styled Components",
+        type: "Frontend",
     },
     {
         imageUrl: sass,
@@ -106,61 +96,43 @@ export const skills = [
         imageUrl: typescript,
         name: "TypeScript",
         type: "Frontend",
-    }
+    },
+    {
+        imageUrl: storybook,
+        name: "Storybook",
+        type: "Testing / UI Development",
+    },
 ];
+
 
 export const experiences = [
     {
-        title: "React.js Developer",
-        company_name: "Starbucks",
-        icon: starbucks,
-        iconBg: "#accbe1",
-        date: "March 2020 - April 2021",
+        title: "Next.js Developer",
+        company_name: "Inct-bc",
+        icon: inctbc,
+        iconBg: "#000000",
+        date: "September 2024 - May 2024",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
+            "Developed and supported microfrontend modules using Next.js and modern frontend technologies.",
+            "Built reusable UI components with React, Radix UI, and Tailwind; documented them in Storybook.",
+            "Managed application state and API interactions using Redux Toolkit and RTK Query.",
+            "Integrated real-time features via WebSockets and implemented GraphQL-based authentication flows.",
+        ]
+
     },
     {
-        title: "React Native Developer",
-        company_name: "Tesla",
-        icon: tesla,
-        iconBg: "#fbc3bc",
-        date: "Jan 2021 - Feb 2022",
+        title: "Frontend Developer (PWA with React)",
+        company_name: "Afishus",
+        icon: afishus,
+        iconBg: "#ffffff",
+        date: "April 2024 - Present",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Developing a production-ready mobile-first PWA using React and SCSS for aggregating event and project-related content.",
+            "Implementing efficient data fetching and caching with TanStack Query (formerly React Query).",
+            "Collaborating with designers and backend developers to deliver a seamless and responsive user experience.",
+            "Writing clean, maintainable frontend code and contributing to feature development across the entire application lifecycle."
         ],
-    },
-    {
-        title: "Web Developer",
-        company_name: "Shopify",
-        icon: shopify,
-        iconBg: "#b7e4c7",
-        date: "Jan 2022 - Jan 2023",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
-        iconBg: "#a2d2ff",
-        date: "Jan 2023 - Present",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
+
     },
 ];
 
@@ -173,56 +145,42 @@ export const socialLinks = [
     {
         name: 'GitHub',
         iconUrl: github,
-        link: 'https://github.com/YourGitHubUsername',
+        link: 'https://github.com/fireonex',
     },
     {
-        name: 'LinkedIn',
-        iconUrl: linkedin,
-        link: 'https://www.linkedin.com/in/YourLinkedInUsername',
+        name: 'Telegram',
+        iconUrl: telegram,
+        link: 'https://t.me/empireladysith',
     }
 ];
 
 export const projects = [
     {
-        iconUrl: pricewise,
-        theme: 'btn-back-red',
-        name: 'Amazon Price Tracker',
-        description: 'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-        link: 'https://github.com/adrianhajdin/pricewise',
+        iconUrl: wizard,
+        theme: 'btn-back-pink',
+        name: 'Meme Wizard Bot',
+        description: 'A Telegram bot that generates custom memes with text using image templates. Built with Node.js and Telegram Bot API.',
+        link: 'https://github.com/fireonex/telegram-memes-generator-bot',
     },
     {
-        iconUrl: threads,
-        theme: 'btn-back-green',
-        name: 'Full Stack Threads Clone',
-        description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: 'https://github.com/adrianhajdin/threads',
-    },
-    {
-        iconUrl: car,
+        iconUrl: todoApp,
         theme: 'btn-back-blue',
-        name: 'Car Finding App',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
+        name: 'Todo List App',
+        description: 'A task tracker with authentication, validation, and error handling. Features a clean UI and solid state management.',
+        link: 'https://github.com/fireonex/TodoList-main',
     },
     {
         iconUrl: snapgram,
-        theme: 'btn-back-pink',
-        name: 'Full Stack Instagram Clone',
-        description: 'Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
-    },
-    {
-        iconUrl: estate,
         theme: 'btn-back-black',
-        name: 'Real-Estate Application',
-        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
+        name: 'Social Media Platform (Internship)',
+        description: 'A full-featured social network built in a team. Includes a public app, admin panel, messenger, and a custom Radix UI-based component library.',
+        link: 'https://github.com/BiteCreators',
     },
     {
-        iconUrl: summiz,
-        theme: 'btn-back-yellow',
-        name: 'AI Summarizer Application',
-        description: 'App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.',
-        link: 'https://github.com/adrianhajdin/project_ai_summarizer',
+        iconUrl: snake,
+        theme: 'btn-back-green',
+        name: 'Snake Game Component',
+        description: 'A responsive Snake game built as a React component. Mobile-friendly and embeddable as a loader or mini-game.',
+        link: 'https://github.com/fireonex/snake-game-component',
     }
 ];

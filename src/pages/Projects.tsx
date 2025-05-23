@@ -2,7 +2,7 @@ import {projects} from "../shared/constants";
 import {cn} from "../shared";
 import {Link} from "react-router-dom";
 import {arrow} from "../assets/icons";
-import { CTA } from "../components";
+import {CTA} from "../components";
 
 export const Projects = () => {
     return (
@@ -12,11 +12,9 @@ export const Projects = () => {
             </h1>
             <div className={'mt-5 flex flex-col gap-3 text-slate-500'}>
                 <p className='text-slate-500 mt-2 leading-relaxed'>
-                    I've embarked on numerous projects throughout the years, but these are
-                    the ones I hold closest to my heart. Many of them are open-source, so if
-                    you come across something that piques your interest, feel free to
-                    explore the codebase and contribute your ideas for further enhancements.
-                    Your collaboration is highly valued!
+                    I've worked on a range of projects over the years, and these are some of my personal favorites.
+                    They're open-source, so if something sparks your interest, you’re welcome to check out the code or
+                    even jump in and help improve it. Always happy to see fellow devs get involved!
                 </p>
             </div>
             <div className={'flex flex-wrap my-20 gap-16'}>
