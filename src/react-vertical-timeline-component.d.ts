@@ -1,25 +1,25 @@
-declare module 'react-vertical-timeline-component' {
-    import * as React from 'react';
+declare module "react-vertical-timeline-component" {
+  import * as React from "react";
 
-    export interface VerticalTimelineProps {
-        children?: React.ReactNode;
-        animate?: boolean;
-        className?: string;
-        layout?: '1-column' | '2-columns';
-    }
+  export interface VerticalTimelineProps {
+    animate?: boolean;
+    className?: string;
+    children?: React.ReactNode;
+    layout?: "1-column" | "2-columns";
+  }
 
-    export interface VerticalTimelineElementProps {
-        className?: string;
-        contentStyle?: React.CSSProperties;
-        contentArrowStyle?: React.CSSProperties;
-        date?: string | React.ReactNode;
-        dateClassName?: string;
-        iconStyle?: React.CSSProperties;
-        icon?: React.ReactNode;
-        position?: 'left' | 'right';
-        children?: React.ReactNode;
-    }
+  export interface VerticalTimelineElementProps {
+    className?: string;
+    dateClassName?: string;
+    icon?: React.ReactNode;
+    children?: React.ReactNode;
+    position?: "left" | "right";
+    date?: string | React.ReactNode;
+    iconStyle?: React.CSSProperties;
+    contentStyle?: React.CSSProperties;
+    contentArrowStyle?: React.CSSProperties;
+  }
 
-    export const VerticalTimeline: React.FC<VerticalTimelineProps>;
-    export const VerticalTimelineElement: React.FC<VerticalTimelineElementProps>;
+  export const VerticalTimeline: React.FC<VerticalTimelineProps>;
+  export const VerticalTimelineElement: React.FC<VerticalTimelineElementProps>;
 }

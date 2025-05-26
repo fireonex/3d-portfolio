@@ -1,4 +1,4 @@
-export {HomeInfo} from "./HomeInfo"
-export {Navbar} from "./Navbar"
-export {CTA} from "./CTA"
-export {Footer} from "./Footer"
+export { CTA } from "./CTA";
+export { Navbar } from "./Navbar";
+export { Footer } from "./Footer";
+export { HomeInfo } from "./HomeInfo";

@@ -6,180 +6,188 @@ Source: https://sketchfab.com/3d-models/fantastic-castle-08a018e4e7b3486dbec7b03
 Title: Fantastic castle
 */
 
-import {useEffect, useRef} from 'react'
-import {useGLTF} from '@react-three/drei'
+import { useRef, useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
 // @ts-ignore
 import castleScene from "../../assets/fantastic_castle.glb";
-import {GLTF} from "three-stdlib";
-import {a} from "@react-spring/three"
+import { GLTF } from "three-stdlib";
+import { a } from "@react-spring/three";
 import * as THREE from "three";
-import {useFrame, useThree} from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
-    nodes: {
-        ['��������������001_����������������003_0']: THREE.Mesh
-        ['������008_����������������002_0']: THREE.Mesh
-        ['������010_����������������001_0']: THREE.Mesh
-        ['������011_����������������_0']: THREE.Mesh
-        ['������������������_����������������004_0']: THREE.Mesh
-    }
-    materials: {
-        ['.003']: THREE.MeshStandardMaterial
-        ['.002']: THREE.MeshStandardMaterial
-        ['.001']: THREE.MeshStandardMaterial
-        material: THREE.MeshStandardMaterial
-        ['.004']: THREE.MeshStandardMaterial
-    }
-}
+  materials: {
+    [".003"]: THREE.MeshStandardMaterial;
+    [".002"]: THREE.MeshStandardMaterial;
+    [".001"]: THREE.MeshStandardMaterial;
+    material: THREE.MeshStandardMaterial;
+    [".004"]: THREE.MeshStandardMaterial;
+  };
+  nodes: {
+    ["������011_����������������_0"]: THREE.Mesh;
+    ["������008_����������������002_0"]: THREE.Mesh;
+    ["������010_����������������001_0"]: THREE.Mesh;
+    ["��������������001_����������������003_0"]: THREE.Mesh;
+    ["������������������_����������������004_0"]: THREE.Mesh;
+  };
+};
 type Props = {
-    isRotating: boolean
-    setIsRotating: (isRotating: boolean) => void
-    position: any
-    scale: any
-    rotation: any
-    setCurrentStage: (stage: number) => void
-}
+  scale: any;
+  position: any;
+  rotation: any;
+  isRotating: boolean;
+  setCurrentStage: (stage: number) => void;
+  setIsRotating: (isRotating: boolean) => void;
+};
 
-export function Castle({isRotating, setIsRotating, setCurrentStage, ...props}: Props) {
-    const castleRef = useRef<THREE.Group>(null)
-    const {gl, viewport} = useThree()
-    const {nodes, materials} = useGLTF(castleScene) as GLTFResult
+export function Castle({ isRotating, setIsRotating, setCurrentStage, ...props }: Props) {
+  const castleRef = useRef<THREE.Group>(null);
+  const { gl, viewport } = useThree();
+  const { nodes, materials } = useGLTF(castleScene) as GLTFResult;
 
-    const lastX = useRef(0)
-    const rotationSpeed = useRef(0)
-    const dampingFactor = 0.95
+  const lastX = useRef(0);
+  const rotationSpeed = useRef(0);
+  const dampingFactor = 0.95;
 
-    const handlePointerDown = (e: PointerEvent | TouchEvent) => {
-        e.preventDefault()
-        setIsRotating(true)
-        const clientX = 'touches' in e ? e.touches[0].clientX : (e as PointerEvent).clientX
-        lastX.current = clientX
+  const handlePointerDown = (e: TouchEvent | PointerEvent) => {
+    e.preventDefault();
+    setIsRotating(true);
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as PointerEvent).clientX;
+    lastX.current = clientX;
+  };
+
+  const handlePointerUp = () => {
+    setIsRotating(false);
+  };
+
+  const handlePointerMove = (e: TouchEvent | PointerEvent) => {
+    if (!isRotating || !castleRef.current) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as PointerEvent).clientX;
+    const delta = (clientX - lastX.current) / viewport.width;
+    const rotationSensitivity = window.innerWidth < 768 ? 0.05 : 0.01;
+    castleRef.current.rotation.y += delta * rotationSensitivity * Math.PI;
+    // castleRef.current.rotation.y += delta * 0.01 * Math.PI
+    lastX.current = clientX;
+    rotationSpeed.current = delta * 0.01 * Math.PI;
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (!castleRef.current) return;
+    if (e.key === "ArrowLeft") {
+      setIsRotating(true);
+      castleRef.current.rotation.y += 0.01 * Math.PI;
+    } else if (e.key === "ArrowRight") {
+      setIsRotating(true);
+      castleRef.current.rotation.y -= 0.01 * Math.PI;
+    }
+  };
+
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      setIsRotating(false);
+    }
+  };
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    canvas.addEventListener("pointerdown", handlePointerDown);
+    canvas.addEventListener("pointerup", handlePointerUp);
+    canvas.addEventListener(
+      "pointermove",
+      handlePointerMove as EventListener,
+      { passive: false } as any,
+    );
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      canvas.removeEventListener("pointerdown", handlePointerDown);
+      canvas.removeEventListener("pointerup", handlePointerUp);
+      canvas.removeEventListener(
+        "pointermove",
+        handlePointerMove as EventListener,
+        { passive: false } as any,
+      );
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [gl, isRotating]);
+
+  useFrame(() => {
+    if (!castleRef.current) return;
+
+    // Плавное затухание вращения
+    if (!isRotating) {
+      rotationSpeed.current *= dampingFactor;
+      if (Math.abs(rotationSpeed.current) < 0.001) {
+        rotationSpeed.current = 0;
+      }
     }
 
-    const handlePointerUp = () => {
-        setIsRotating(false)
-    }
+    // Ограничиваем скорость (на всякий случай)
+    rotationSpeed.current = Math.min(rotationSpeed.current, 0.1);
 
-    const handlePointerMove = (e: PointerEvent | TouchEvent) => {
-        if (!isRotating || !castleRef.current) return
-        const clientX = 'touches' in e ? e.touches[0].clientX : (e as PointerEvent).clientX
-        const delta = (clientX - lastX.current) / viewport.width
-        const rotationSensitivity = window.innerWidth < 768 ? 0.05 : 0.01;
-        castleRef.current.rotation.y += delta * rotationSensitivity * Math.PI;
-        // castleRef.current.rotation.y += delta * 0.01 * Math.PI
-        lastX.current = clientX
-        rotationSpeed.current = delta * 0.01 * Math.PI
-    }
+    // Применяем вращение
+    castleRef.current.rotation.y += rotationSpeed.current;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (!castleRef.current) return
-        if (e.key === 'ArrowLeft') {
-            setIsRotating(true)
-            castleRef.current.rotation.y += 0.01 * Math.PI
-        } else if (e.key === 'ArrowRight') {
-            setIsRotating(true)
-            castleRef.current.rotation.y -= 0.01 * Math.PI
-        }
-    }
+    // Определяем текущий этап на основе угла поворота
+    const rotation = castleRef.current.rotation.y;
+    const normalizedRotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+    const stage = Math.floor(normalizedRotation / (Math.PI / 2)) + 1;
+    setCurrentStage(stage > 4 ? 1 : stage);
+  });
 
-    const handleKeyUp = (e: KeyboardEvent) => {
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-            setIsRotating(false)
-        }
-    }
-
-    useEffect(() => {
-        const canvas = gl.domElement
-        canvas.addEventListener('pointerdown', handlePointerDown)
-        canvas.addEventListener('pointerup', handlePointerUp)
-        canvas.addEventListener('pointermove', handlePointerMove as EventListener, {passive: false} as any)
-        window.addEventListener('keydown', handleKeyDown)
-        window.addEventListener('keyup', handleKeyUp)
-
-        return () => {
-            canvas.removeEventListener('pointerdown', handlePointerDown)
-            canvas.removeEventListener('pointerup', handlePointerUp)
-            canvas.removeEventListener('pointermove', handlePointerMove as EventListener, {passive: false} as any)
-            window.removeEventListener('keydown', handleKeyDown)
-            window.removeEventListener('keyup', handleKeyUp)
-        }
-    }, [gl, isRotating])
-
-    useFrame(() => {
-        if (!castleRef.current) return;
-
-        // Плавное затухание вращения
-        if (!isRotating) {
-            rotationSpeed.current *= dampingFactor;
-            if (Math.abs(rotationSpeed.current) < 0.001) {
-                rotationSpeed.current = 0;
-            }
-        }
-
-        // Ограничиваем скорость (на всякий случай)
-        rotationSpeed.current = Math.min(rotationSpeed.current, 0.1);
-
-        // Применяем вращение
-        castleRef.current.rotation.y += rotationSpeed.current;
-
-        // Определяем текущий этап на основе угла поворота
-        const rotation = castleRef.current.rotation.y;
-        const normalizedRotation = ((rotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-        const stage = Math.floor(normalizedRotation / (Math.PI / 2)) + 1;
-        setCurrentStage(stage > 4 ? 1 : stage);
-    });
-
-    return (
-        <a.group {...props} ref={castleRef}>
-            <group rotation={[-Math.PI / 2, 0, 0]} scale={0.01} position={props.position || [0, -2, 0]}>
-                <group rotation={[Math.PI / 2, 0, 0]}>
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes['��������������001_����������������003_0'].geometry}
-                        material={materials['.003']}
-                        position={[7366.46, 2628.348, 6702.574]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={100}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes['������008_����������������002_0'].geometry}
-                        material={materials['.002']}
-                        position={[-8870.991, 1117.951, 8887.213]}
-                        rotation={[-Math.PI / 2, 0, -0.917]}
-                        scale={100}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes['������010_����������������001_0'].geometry}
-                        material={materials['.001']}
-                        position={[-1561.231, 1156.779, 8464.42]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={100}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes['������011_����������������_0'].geometry}
-                        material={materials.material}
-                        position={[-1739.304, 1213.496, 5251.469]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={100}
-                    />
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes['������������������_����������������004_0'].geometry}
-                        material={materials['.004']}
-                        position={[-1609.998, -270.173, 5555.747]}
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        scale={100}
-                    />
-                </group>
-            </group>
-        </a.group>
-    )
+  return (
+    <a.group {...props} ref={castleRef}>
+      <group scale={0.01} rotation={[-Math.PI / 2, 0, 0]} position={props.position || [0, -2, 0]}>
+        <group rotation={[Math.PI / 2, 0, 0]}>
+          <mesh
+            castShadow
+            scale={100}
+            receiveShadow
+            material={materials[".003"]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[7366.46, 2628.348, 6702.574]}
+            geometry={nodes["��������������001_����������������003_0"].geometry}
+          />
+          <mesh
+            castShadow
+            scale={100}
+            receiveShadow
+            material={materials[".002"]}
+            rotation={[-Math.PI / 2, 0, -0.917]}
+            position={[-8870.991, 1117.951, 8887.213]}
+            geometry={nodes["������008_����������������002_0"].geometry}
+          />
+          <mesh
+            castShadow
+            scale={100}
+            receiveShadow
+            material={materials[".001"]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[-1561.231, 1156.779, 8464.42]}
+            geometry={nodes["������010_����������������001_0"].geometry}
+          />
+          <mesh
+            castShadow
+            scale={100}
+            receiveShadow
+            material={materials.material}
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[-1739.304, 1213.496, 5251.469]}
+            geometry={nodes["������011_����������������_0"].geometry}
+          />
+          <mesh
+            castShadow
+            scale={100}
+            receiveShadow
+            material={materials[".004"]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[-1609.998, -270.173, 5555.747]}
+            geometry={nodes["������������������_����������������004_0"].geometry}
+          />
+        </group>
+      </group>
+    </a.group>
+  );
 }

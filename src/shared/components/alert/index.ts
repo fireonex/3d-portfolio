@@ -1,3 +1,3 @@
-export {useAlert} from "./useAlert"
-export {Alert} from "./Alert"
-export type {AlertType} from "./useAlert"
+export { Alert } from "./Alert";
+export { useAlert } from "./useAlert";
+export type { AlertType } from "./useAlert";

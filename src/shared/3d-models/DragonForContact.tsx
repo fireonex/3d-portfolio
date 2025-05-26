@@ -6,127 +6,129 @@ Source: https://sketchfab.com/3d-models/adult-dragon-b1667e01947148e5bea733b3b69
 Title: Adult Dragon
 */
 
-import * as THREE from 'three'
-import {useEffect, useRef} from 'react'
-import {useGLTF, useAnimations} from '@react-three/drei'
-import {GLTF} from 'three-stdlib'
+import * as THREE from "three";
+import { useRef, useEffect } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { GLTF } from "three-stdlib";
 // @ts-ignore
-import scene from "../../assets/low_poly_dragon.glb"
-import {GroupProps} from "@react-three/fiber";
+import scene from "../../assets/low_poly_dragon.glb";
+import { GroupProps } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
-    nodes: {
-        Cube_0: THREE.SkinnedMesh
-        Ossos_rootJoint: THREE.Bone
-    }
-    materials: {
-        Material: THREE.MeshBasicMaterial
-    }
-}
-
-
-type Props = GroupProps & {
-    animationSpeed?: number;
+  materials: {
+    Material: THREE.MeshBasicMaterial;
+  };
+  nodes: {
+    Cube_0: THREE.SkinnedMesh;
+    Ossos_rootJoint: THREE.Bone;
+  };
 };
 
+type Props = GroupProps & {
+  animationSpeed?: number;
+};
 
-export function DragonForContact({
-                                     animationSpeed = 1,
-                                     ...props
-                                 }: Props) {
-    const currentAnimation = 'cyclewalk'
-    const group = useRef<THREE.Group>(null)
-    const {nodes, materials, animations} = useGLTF(scene) as GLTFResult
-    const {actions} = useAnimations(animations, group)
+export function DragonForContact({ animationSpeed = 1, ...props }: Props) {
+  const currentAnimation = "cyclewalk";
+  const group = useRef<THREE.Group>(null);
+  const { nodes, materials, animations } = useGLTF(scene) as GLTFResult;
+  const { actions } = useAnimations(animations, group);
 
-    useEffect(() => {
-        if (!actions) return
+  useEffect(() => {
+    if (!actions) return;
 
-        Object.values(actions).forEach((action) => {
-            action?.stop?.()
-        })
+    Object.values(actions).forEach((action) => {
+      action?.stop?.();
+    });
 
-        const action = actions[currentAnimation as keyof typeof actions]
-        if (action) {
-            action.setEffectiveTimeScale(animationSpeed)
-            action.play()
-        }
-    }, [actions, currentAnimation, animationSpeed])
-    return (
-        <group ref={group} {...props} dispose={null}>
-            <group name="Sketchfab_Scene">
-                <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.258}>
-                    <group name="Root">
-                        <group
-                            name="Lamp"
-                            position={[15.333, 12.533, 17.243]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp_1"/>
-                        </group>
-                        <group
-                            name="Lamp001"
-                            position={[-15.333, 12.533, 17.243]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp001_1"/>
-                        </group>
-                        <group
-                            name="Lamp002"
-                            position={[-15.333, -12.342, 17.243]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp002_1"/>
-                        </group>
-                        <group
-                            name="Lamp003"
-                            position={[15.333, -12.342, 17.243]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp003_1"/>
-                        </group>
-                        <group
-                            name="Lamp004"
-                            position={[15.333, -12.342, -12.763]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp004_1"/>
-                        </group>
-                        <group
-                            name="Lamp005"
-                            position={[-15.333, -12.342, -12.763]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp005_1"/>
-                        </group>
-                        <group
-                            name="Lamp006"
-                            position={[-15.333, 12.533, -12.763]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp006_1"/>
-                        </group>
-                        <group
-                            name="Lamp007"
-                            position={[15.333, 12.533, -12.763]}
-                            rotation={[-0.268, 0.602, 1.932]}
-                            scale={2.644}>
-                            <group name="Lamp007_1"/>
-                        </group>
-                        <group name="Ossos" position={[0, 0.041, -0.015]}>
-                            <primitive object={nodes.Ossos_rootJoint}/>
-                            <skinnedMesh
-                                name="Cube_0"
-                                geometry={nodes.Cube_0.geometry}
-                                material={materials.Material}
-                                skeleton={nodes.Cube_0.skeleton}
-                            />
-                            <group name="Cube" position={[0, -0.063, 1.194]} scale={0.507}/>
-                        </group>
-                    </group>
-                </group>
+    const action = actions[currentAnimation as keyof typeof actions];
+    if (action) {
+      action.setEffectiveTimeScale(animationSpeed);
+      action.play();
+    }
+  }, [actions, currentAnimation, animationSpeed]);
+  return (
+    <group ref={group} {...props} dispose={null}>
+      <group name="Sketchfab_Scene">
+        <group scale={0.258} name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+          <group name="Root">
+            <group
+              name="Lamp"
+              scale={2.644}
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[15.333, 12.533, 17.243]}
+            >
+              <group name="Lamp_1" />
             </group>
+            <group
+              scale={2.644}
+              name="Lamp001"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[-15.333, 12.533, 17.243]}
+            >
+              <group name="Lamp001_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp002"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[-15.333, -12.342, 17.243]}
+            >
+              <group name="Lamp002_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp003"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[15.333, -12.342, 17.243]}
+            >
+              <group name="Lamp003_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp004"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[15.333, -12.342, -12.763]}
+            >
+              <group name="Lamp004_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp005"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[-15.333, -12.342, -12.763]}
+            >
+              <group name="Lamp005_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp006"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[-15.333, 12.533, -12.763]}
+            >
+              <group name="Lamp006_1" />
+            </group>
+            <group
+              scale={2.644}
+              name="Lamp007"
+              rotation={[-0.268, 0.602, 1.932]}
+              position={[15.333, 12.533, -12.763]}
+            >
+              <group name="Lamp007_1" />
+            </group>
+            <group name="Ossos" position={[0, 0.041, -0.015]}>
+              <primitive object={nodes.Ossos_rootJoint} />
+              <skinnedMesh
+                name="Cube_0"
+                material={materials.Material}
+                geometry={nodes.Cube_0.geometry}
+                skeleton={nodes.Cube_0.skeleton}
+              />
+              <group name="Cube" scale={0.507} position={[0, -0.063, 1.194]} />
+            </group>
+          </group>
         </group>
-    )
+      </group>
+    </group>
+  );
 }
-

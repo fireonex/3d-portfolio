@@ -1,4 +1,4 @@
-export {Castle} from "./Castle.tsx"
-export {Sky} from "./Sky"
-export {Dragon} from "./Dragon"
-export {DragonForContact} from "./DragonForContact"
+export { Sky } from "./Sky";
+export { Dragon } from "./Dragon";
+export { Castle } from "./Castle.tsx";
+export { DragonForContact } from "./DragonForContact";

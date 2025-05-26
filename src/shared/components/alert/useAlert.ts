@@ -1,21 +1,21 @@
-import {useState} from "react";
+import { useState } from "react";
 
-export type AlertType = 'success' | 'danger';
+export type AlertType = "danger" | "success";
 type Alert = {
-    show: boolean
-    text: string
-    type?: AlertType;
-}
+  text: string;
+  show: boolean;
+  type?: AlertType;
+};
 export const useAlert = () => {
-    const [alert, setAlert] = useState<Alert>({show: false, text: '', type: 'danger'});
+  const [alert, setAlert] = useState<Alert>({ text: "", show: false, type: "danger" });
 
-    const showAlert = (alertObj: Alert) => {
-        setAlert(alertObj);
-    };
+  const showAlert = (alertObj: Alert) => {
+    setAlert(alertObj);
+  };
 
-    const hideAlert = () => {
-        setAlert({show: false, text: '', type: 'danger'});
-    };
+  const hideAlert = () => {
+    setAlert({ text: "", show: false, type: "danger" });
+  };
 
-    return {alert, showAlert, hideAlert};
+  return { alert, showAlert, hideAlert };
 };
