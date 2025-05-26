@@ -1,7 +1,7 @@
 import { Suspense, useState, FormEvent, ChangeEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
-import { Alert, Loader, useAlert, DragonForContact } from "../shared";
+import { Alert, Loader, useAlert, ContactDragon } from "../../../shared";
 
 type FormState = {
   name: string;
@@ -161,7 +161,7 @@ export const Contact = () => {
         <Canvas className={"bg-transparent"} camera={{ position: [0, 0, 5] }}>
           <ambientLight intensity={0.5} />
           <Suspense fallback={<Loader />}>
-            <DragonForContact
+            <ContactDragon
               scale={dragonScale}
               position={dragonPosition}
               rotation={dragonRotation}

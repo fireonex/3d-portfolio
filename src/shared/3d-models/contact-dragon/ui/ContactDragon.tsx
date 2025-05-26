@@ -6,47 +6,18 @@ Source: https://sketchfab.com/3d-models/adult-dragon-b1667e01947148e5bea733b3b69
 Title: Adult Dragon
 */
 
-import * as THREE from "three";
-import { useRef, useEffect } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
-// @ts-ignore
-import scene from "../../assets/low_poly_dragon.glb";
 import { GroupProps } from "@react-three/fiber";
+import { useContactDragon } from "../model";
 
-type GLTFResult = GLTF & {
-  materials: {
-    Material: THREE.MeshBasicMaterial;
-  };
-  nodes: {
-    Cube_0: THREE.SkinnedMesh;
-    Ossos_rootJoint: THREE.Bone;
-  };
-};
 
 type Props = GroupProps & {
   animationSpeed?: number;
 };
 
-export function DragonForContact({ animationSpeed = 1, ...props }: Props) {
-  const currentAnimation = "cyclewalk";
-  const group = useRef<THREE.Group>(null);
-  const { nodes, materials, animations } = useGLTF(scene) as GLTFResult;
-  const { actions } = useAnimations(animations, group);
+export function ContactDragon({ animationSpeed = 1, ...props }: Props) {
 
-  useEffect(() => {
-    if (!actions) return;
+  const { group, nodes, materials } = useContactDragon(animationSpeed);
 
-    Object.values(actions).forEach((action) => {
-      action?.stop?.();
-    });
-
-    const action = actions[currentAnimation as keyof typeof actions];
-    if (action) {
-      action.setEffectiveTimeScale(animationSpeed);
-      action.play();
-    }
-  }, [actions, currentAnimation, animationSpeed]);
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">

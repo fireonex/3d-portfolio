@@ -1,7 +1,7 @@
-import { cn, projects } from "../shared";
+import { cn, projects } from "../../../shared";
 import { Link } from "react-router-dom";
-import { arrow } from "../assets/icons";
-import { CTA } from "../components";
+import { arrow } from "../../../assets/icons";
+import { CTA } from "../../../components";
 
 export const Projects = () => {
   return (

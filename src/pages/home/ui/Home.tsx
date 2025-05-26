@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
-import { cn, Sky, Loader, Castle, Dragon } from "../shared";
-import { HomeInfo } from "../components";
+import { cn, Sky, Loader, Castle, MainDragon } from "../../../shared";
+import { HomeInfo } from "../../../components";
 
 export const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -58,11 +58,11 @@ export const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
           />
-          <Dragon
+          <MainDragon
             isRotating={isRotating}
             rotation={dragonplaneRotation}
-            dragonplaneScale={dragonplaneScale}
-            dragonplanePosition={dragonplanePosition}
+            dragonScale={dragonplaneScale}
+            dragonPosition={dragonplanePosition}
           />
         </Suspense>
       </Canvas>
