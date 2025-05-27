@@ -1,7 +1,6 @@
-import { Alert } from "../../../shared";
-import { ContactForm } from "./ContactForm.tsx";
-import { ContactDragonComponent } from "./ContactDragonModel.tsx";
-import { useContactForm, useContactDragon } from "../model";
+import { Alert } from "../../shared";
+import { ContactForm, ContactDragonComponent } from "./ui";
+import { useContactForm, useContactDragon } from "./model";
 
 export const Contact = () => {
   const { dragonScale, dragonPosition, dragonRotation, animationSpeed, setAnimationSpeed } =

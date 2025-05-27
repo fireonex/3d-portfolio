@@ -1,7 +1,6 @@
 import "react-vertical-timeline-component/style.min.css";
-import { CTA } from "../../../components";
-import { WorkExperience } from "./WorkExperience.tsx";
-import { Skills } from "./Skills.tsx";
+import { CTA } from "../../components";
+import { Skills, WorkExperience } from "./ui";
 
 export const About = () => {
   return (
@@ -15,8 +14,8 @@ export const About = () => {
           applications with attention to detail, visual appeal, and user experience.
         </p>
       </div>
-      <Skills/>
-      <WorkExperience/>
+      <Skills />
+      <WorkExperience />
       <hr className={"border-slate-200"} />
       <CTA />
     </section>

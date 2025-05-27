@@ -1,8 +1,8 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { cn, Sky, Loader, Castle, MainDragon } from "../../../shared";
-import { HomeInfo } from "./HomeInfo.tsx";
-import { useCastle3dModel, useDragon3dModel } from "../model";
+import { cn, Sky, Loader, Castle, MainDragon } from "../../shared";
+import { HomeInfo } from "./ui";
+import { useCastle3dModel, useDragon3dModel } from "./model";
 
 export const Home = () => {
   const {
