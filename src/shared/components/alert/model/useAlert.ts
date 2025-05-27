@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { AlertType } from "./types";
 
-export type AlertType = "danger" | "success";
 type Alert = {
   text: string;
   show: boolean;

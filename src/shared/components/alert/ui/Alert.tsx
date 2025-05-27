@@ -1,10 +1,11 @@
 import { cn } from "@/shared";
-import { AlertType } from "../alert";
+import { AlertType } from "../model";
 
 type Props = {
   text: string;
   type: AlertType | undefined;
 };
+
 export const Alert = ({ text, type = "danger" }: Props) => {
   return (
     <div className={"absolute top-14 left-0 right-0 flex justify-center items-center"}>

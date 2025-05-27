@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "format": "eslint --fix .",
     "format-prettier": "prettier --write \"**/*.{js,ts,tsx,jsx,json,md,css,scss}\"",
-    "lint-staged": "lint-staged --config lint-staged.config.js",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -41,7 +40,6 @@
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.45.0",
-    "lint-staged": "^15.1.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",

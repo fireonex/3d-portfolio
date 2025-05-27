@@ -1,3 +1,2 @@
-export { Alert } from "./Alert";
-export { useAlert } from "./useAlert";
-export type { AlertType } from "./useAlert";
+export * from "./ui";
+export * from "./model";

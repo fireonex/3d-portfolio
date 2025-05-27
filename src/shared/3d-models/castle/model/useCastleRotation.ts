@@ -52,18 +52,26 @@ export const useCastleRotation = (
     const canvas = gl.domElement;
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
-    canvas.addEventListener("pointermove", handlePointerMove as EventListener, {
-      passive: false,
-    } as any);
+    canvas.addEventListener(
+      "pointermove",
+      handlePointerMove as EventListener,
+      {
+        passive: false,
+      } as any,
+    );
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerup", handlePointerUp);
-      canvas.removeEventListener("pointermove", handlePointerMove as EventListener, {
-        passive: false,
-      } as any);
+      canvas.removeEventListener(
+        "pointermove",
+        handlePointerMove as EventListener,
+        {
+          passive: false,
+        } as any,
+      );
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
