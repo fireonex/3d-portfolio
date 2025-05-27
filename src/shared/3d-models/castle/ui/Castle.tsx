@@ -8,8 +8,7 @@ Title: Fantastic castle
 
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-// @ts-ignore
-import castleScene from "@/assets/fantastic_castle.glb";
+import { CastleModel } from "@/assets/3d-models-optimized";
 import { a } from "@react-spring/three";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
@@ -26,7 +25,7 @@ type Props = {
 
 export function Castle({ isRotating, setIsRotating, setCurrentStage, ...props }: Props) {
   const castleRef = useRef<THREE.Group>(null);
-  const { nodes, materials } = useGLTF(castleScene) as CastleGLTFResult;
+  const { nodes, materials } = useGLTF(CastleModel) as CastleGLTFResult;
 
   const { rotationSpeed, dampingFactor } = useCastleRotation(
     castleRef,

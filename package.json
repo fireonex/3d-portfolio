@@ -9,11 +9,14 @@
     "lint": "eslint .",
     "format": "eslint --fix .",
     "format-prettier": "prettier --write \"**/*.{js,ts,tsx,jsx,json,md,css,scss}\"",
+    "optimize-models": "node scripts/optimize-models.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
     "@eslint/js": "^9.27.0",
+    "@gltf-transform/core": "^4.1.4",
+    "@gltf-transform/functions": "^4.1.4",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.88.2",
     "@react-three/fiber": "^8.14.5",

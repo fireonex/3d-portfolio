@@ -19,8 +19,8 @@ export const ContactDragonComponent = ({
   return (
     <div className={"lg:w-1/2 w-full lg:h-auto h-[350px]"}>
       <Canvas className={"bg-transparent"} camera={{ position: [0, 0, 5] }}>
-        <ambientLight intensity={0.5} />
         <Suspense fallback={<Loader />}>
+          <ambientLight intensity={2.5} />
           <ContactDragon
             scale={dragonScale}
             position={dragonPosition}

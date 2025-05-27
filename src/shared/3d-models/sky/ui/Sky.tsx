@@ -1,14 +1,14 @@
 import { useGLTF } from "@react-three/drei";
-// @ts-ignore
-import skyScene from "@/assets/skybox2.glb";
+
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
+import { Skybox } from "@/assets/3d-models-original";
 
 type Props = { isRotating: boolean };
 
 export const Sky = ({ isRotating }: Props) => {
-  const sky = useGLTF(skyScene);
+  const sky = useGLTF(Skybox);
   const skyRef = useRef<Mesh>(null);
   useFrame((_, delta) => {
     if (isRotating && skyRef.current) {

@@ -1,8 +1,7 @@
-// @ts-ignore
-import dragonScene from "@/assets/dragon.glb";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
+import { Dragon } from "@/assets/3d-models-optimized";
 
 type Props = {
   isRotating: boolean;
@@ -13,7 +12,7 @@ type Props = {
 
 export const MainDragon = ({ rotation, isRotating, dragonScale, dragonPosition }: Props) => {
   const ref = useRef<THREE.Group>(null);
-  const { scene, animations } = useGLTF(dragonScene);
+  const { scene, animations } = useGLTF(Dragon);
   const { actions } = useAnimations(animations, ref);
 
   useEffect(() => {
@@ -25,15 +24,12 @@ export const MainDragon = ({ rotation, isRotating, dragonScale, dragonPosition }
   }, [actions, isRotating]);
 
   return (
-    <>
-      <ambientLight intensity={0.5} />
-      <primitive
-        ref={ref}
-        object={scene}
-        rotation={rotation}
-        scale={dragonScale}
-        position={dragonPosition}
-      />
-    </>
+    <primitive
+      ref={ref}
+      object={scene}
+      rotation={rotation}
+      scale={dragonScale}
+      position={dragonPosition}
+    />
   );
 };

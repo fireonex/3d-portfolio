@@ -1,14 +1,13 @@
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useGLTF, useAnimations } from "@react-three/drei";
-// @ts-ignore
-import scene from "@/assets/low_poly_dragon.glb";
 import { ContactDragonGLTFResult } from "./types.ts";
+import { LowPolyDragon } from "@/assets/3d-models-optimized";
 
 export const useContactDragon = (animationSpeed: number) => {
   const currentAnimation = "cyclewalk";
   const group = useRef<THREE.Group>(null);
-  const { nodes, materials, animations } = useGLTF(scene) as ContactDragonGLTFResult;
+  const { nodes, materials, animations } = useGLTF(LowPolyDragon) as ContactDragonGLTFResult;
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {

@@ -42,6 +42,7 @@ export const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
           />
+          <ambientLight intensity={0.5} />
           <MainDragon
             isRotating={isRotating}
             rotation={dragonRotation}
