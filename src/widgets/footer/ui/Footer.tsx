@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { socialLinks } from "../../../shared";
+import { socialLinks } from "@/shared";
 
 export const Footer = () => {
   return (

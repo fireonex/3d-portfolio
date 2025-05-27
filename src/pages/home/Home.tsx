@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { cn, Sky, Loader, Castle, MainDragon } from "../../shared";
+import { cn, Sky, Loader, Castle, MainDragon } from "@/shared";
 import { HomeInfo } from "./ui";
 import { useCastle3dModel, useDragon3dModel } from "./model";
 

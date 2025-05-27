@@ -1,5 +1,5 @@
 import "react-vertical-timeline-component/style.min.css";
-import { CTA } from "../../widgets";
+import { CTA } from "@/widgets";
 import { Skills, WorkExperience } from "./ui";
 
 export const About = () => {

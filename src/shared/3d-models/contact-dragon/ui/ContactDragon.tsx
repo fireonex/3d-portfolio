@@ -9,13 +9,11 @@ Title: Adult Dragon
 import { GroupProps } from "@react-three/fiber";
 import { useContactDragon } from "../model";
 
-
 type Props = GroupProps & {
   animationSpeed?: number;
 };
 
 export function ContactDragon({ animationSpeed = 1, ...props }: Props) {
-
   const { group, nodes, materials } = useContactDragon(animationSpeed);
 
   return (

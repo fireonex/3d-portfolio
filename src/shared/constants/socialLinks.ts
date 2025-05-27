@@ -1,4 +1,4 @@
-import { github, contact, telegram } from "../../assets/icons";
+import { github, contact, telegram } from "@/assets/icons";
 
 export const socialLinks = [
   {

@@ -1,4 +1,4 @@
-import { snake, wizard, todoApp, snapgram } from "../../assets/icons";
+import { snake, wizard, todoApp, snapgram } from "@/assets/icons";
 
 export const projects = [
   {

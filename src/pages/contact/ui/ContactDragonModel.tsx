@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Loader, ContactDragon } from "../../../shared";
+import { Loader, ContactDragon } from "@/shared";
 import { modelValues } from "../model";
 
 type Props = {

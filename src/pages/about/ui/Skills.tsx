@@ -1,4 +1,4 @@
-import { skills } from "../../../shared";
+import { skills } from "@/shared";
 
 export const Skills = () => {
   return (
@@ -9,11 +9,7 @@ export const Skills = () => {
           <div key={index} className={"block-container w-20 h-20"}>
             <div className={"btn-back rounded-xl"} />
             <div className={"btn-front rounded-xl flex justify-center items-center"}>
-              <img
-                alt={skill.name}
-                src={skill.imageUrl}
-                className={"w-1/2 h-1/2 object-contain"}
-              />
+              <img alt={skill.name} src={skill.imageUrl} className={"w-1/2 h-1/2 object-contain"} />
             </div>
           </div>
         ))}

@@ -15,7 +15,7 @@ import {
   typescript,
   tailwindcss,
   styledComponents,
-} from "../../assets/icons";
+} from "@/assets/icons";
 
 export const skills = [
   {

@@ -1,5 +1,5 @@
-import { cn } from "../../libs";
-import { AlertType } from "./useAlert.ts";
+import { cn } from "@/shared";
+import { AlertType } from "../alert";
 
 type Props = {
   text: string;

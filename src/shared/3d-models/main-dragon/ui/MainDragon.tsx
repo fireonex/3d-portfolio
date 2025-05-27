@@ -1,5 +1,5 @@
 // @ts-ignore
-import dragonScene from "../../../../assets/dragon.glb";
+import dragonScene from "@/assets/dragon.glb";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 import * as THREE from "three";

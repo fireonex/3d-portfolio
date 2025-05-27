@@ -1,4 +1,4 @@
-import { inctbc, afishus } from "../../assets/images";
+import { inctbc, afishus } from "@/assets/images";
 
 export const experiences = [
   {

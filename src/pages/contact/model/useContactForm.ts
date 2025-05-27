@@ -1,5 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-import { useAlert } from "../../../shared";
+import { useAlert } from "@/shared";
 import emailjs from "@emailjs/browser";
 import { FormState } from "./types.ts";
 

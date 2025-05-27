@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { cn } from "../../../shared";
+import { cn } from "@/shared";
 
 const navItems = [
   { path: "/about", label: "About" },

@@ -1,5 +1,5 @@
-import { projects } from "../../shared";
-import { CTA } from "../../widgets";
+import { projects } from "@/shared";
+import { CTA } from "@/widgets";
 import { ProjectCard, ProjectsPageDescription } from "./ui";
 
 export const Projects = () => {

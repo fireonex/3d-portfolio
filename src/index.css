@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
-body {
-}
-
 .block-container {
   position: relative;
   transition: 250ms;

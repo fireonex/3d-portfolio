@@ -1,6 +1,6 @@
-import { cn } from "../../../shared";
+import { cn } from "@/shared";
 import { Link } from "react-router-dom";
-import { arrow } from "../../../assets/icons";
+import { arrow } from "@/assets/icons";
 
 type Project = {
   name: string;

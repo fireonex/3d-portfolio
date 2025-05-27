@@ -1,6 +1,5 @@
-// @flow
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
-import { experiences } from "../../../shared";
+import { experiences } from "@/shared";
 
 export const WorkExperience = () => {
   return (

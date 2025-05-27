@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useGLTF, useAnimations } from "@react-three/drei";
 // @ts-ignore
-import scene from "../../../../assets/low_poly_dragon.glb";
+import scene from "@/assets/low_poly_dragon.glb";
 import { ContactDragonGLTFResult } from "./types.ts";
 
 export const useContactDragon = (animationSpeed: number) => {
@@ -24,5 +24,5 @@ export const useContactDragon = (animationSpeed: number) => {
       action.play();
     }
   }, [actions, currentAnimation, animationSpeed]);
-  return {group, nodes, materials, animations};
+  return { group, nodes, materials, animations };
 };

@@ -9,12 +9,11 @@ Title: Fantastic castle
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 // @ts-ignore
-import castleScene from "../../../../assets/fantastic_castle.glb";
+import castleScene from "@/assets/fantastic_castle.glb";
 import { a } from "@react-spring/three";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { CastleGLTFResult, useCastleRotation } from "../model";
-
 
 type Props = {
   scale: any;

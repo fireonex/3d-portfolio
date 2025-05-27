@@ -1,4 +1,4 @@
-import { Alert } from "../../shared";
+import { Alert } from "@/shared";
 import { ContactForm, ContactDragonComponent } from "./ui";
 import { useContactForm, useContactDragon } from "./model";
 
