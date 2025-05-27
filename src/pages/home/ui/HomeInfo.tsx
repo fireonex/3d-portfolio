@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-import { arrow } from "../assets/icons";
+import { arrow } from "../../../assets/icons";
 
-type InfoBoxProps = {
+type InfoBox = {
   text: string;
   link: string;
   btnText: string;
 };
 
-type RenderContentType = {
+type RenderContent = {
   [key: number]: JSX.Element;
 };
 
-type HomeInfoProps = {
+type Props = {
   currentStage: number;
 };
 
-const InfoBox = ({ text, link, btnText }: InfoBoxProps): JSX.Element => (
+const InfoBox = ({ text, link, btnText }: InfoBox): JSX.Element => (
   <div className="info-box">
     <p className="font-medium sm:text-xl text-center">{text}</p>
     <Link to={link} className="neo-brutalism-white neo-btn">
@@ -25,7 +25,7 @@ const InfoBox = ({ text, link, btnText }: InfoBoxProps): JSX.Element => (
   </div>
 );
 
-const renderContent: RenderContentType = {
+const renderContent: RenderContent = {
   1: (
     <InfoBox
       link="/about"
@@ -55,6 +55,6 @@ const renderContent: RenderContentType = {
   ),
 };
 
-export const HomeInfo = ({ currentStage }: HomeInfoProps): null | JSX.Element => {
+export const HomeInfo = ({ currentStage }: Props): null | JSX.Element => {
   return renderContent[currentStage] || null;
 };
