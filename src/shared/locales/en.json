@@ -1,0 +1,61 @@
+{
+  "skills": {
+    "title": "My Skills"
+  },
+  "about": {
+    "title1": "Hello, I'm ",
+    "title2": "Maria",
+    "description": "Frontend developer based in Russia, specializing in creating high-quality and efficient applications with attention to detail, visual appeal, and user experience."
+  },
+  "workExperience": {
+    "title": "Work Experience",
+    "description": "I've collaborated with several companies, honing my skills and working alongside talented professionals. Here's a quick overview:",
+    "experiences": {
+      "inctbc": {
+        "company_name": "Inct-bc",
+        "title": "Next.js Developer",
+        "date": "September 2024 - May 2025",
+        "points": [
+          "Developed and supported microfrontend modules using Next.js and modern frontend technologies.",
+          "Built reusable UI components with React, Radix UI, and Tailwind; documented them in Storybook.",
+          "Managed application state and API interactions using Redux Toolkit and RTK Query.",
+          "Integrated real-time features via WebSockets and implemented GraphQL-based authentication flows."
+        ]
+      },
+      "afishus": {
+        "company_name": "Afishus",
+        "title": "Frontend Developer (PWA with React)",
+        "date": "April 2024 - Present",
+        "points": [
+          "Developing a production-ready mobile-first PWA using React and SCSS for aggregating event and project-related content.",
+          "Implementing efficient data fetching and caching with TanStack Query (formerly React Query).",
+          "Collaborating with designers and backend developers to deliver a seamless and responsive user experience.",
+          "Writing clean, maintainable frontend code and contributing to feature development across the entire application lifecycle."
+        ]
+      }
+    }
+  },
+  "projectsExperience": {
+    "title1": "My ",
+    "title2": "Projects",
+    "description": "I've worked on a range of projects over the years, and these are some of my personal favorites. They're open-source, so if something sparks your interest, you’re welcome to check out the code or even jump in and help improve it. Always happy to see fellow devs get involved!",
+    "projects": {
+      "wizard": {
+        "description": "A Telegram bot that generates custom memes with text using image templates. Built with Node.js and Telegram Bot API."
+      },
+      "todoApp": {
+        "description": "A task tracker with authentication, validation, and error handling. Features a clean UI and solid state management."
+      },
+      "snapgram": {
+        "description": "A full-featured social network built in a team. Includes a public app, admin panel, messenger, and a custom Radix UI-based component library."
+      },
+      "snake": {
+        "description": "A responsive Snake game built as a React component. Mobile-friendly and embeddable as a loader or mini-game."
+      }
+    }
+  },
+  "errors": {
+    "required_field": "This field is required",
+    "invalid_email": "Invalid email address"
+  }
+}

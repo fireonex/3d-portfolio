@@ -1,36 +1,33 @@
 import { snake, wizard, todoApp, snapgram } from "@/assets/icons";
+import { TFunction } from "i18next";
 
-export const projects = [
+export const getProjects = (t: TFunction) => [
   {
     iconUrl: wizard,
     theme: "btn-back-pink",
     name: "Meme Wizard Bot",
     link: "https://github.com/fireonex/telegram-memes-generator-bot",
-    description:
-      "A Telegram bot that generates custom memes with text using image templates. Built with Node.js and Telegram Bot API.",
+    description: t("projectsExperience.projects.wizard.description"),
   },
   {
     iconUrl: todoApp,
     name: "Todo List App",
     theme: "btn-back-blue",
     link: "https://github.com/fireonex/TodoList-main",
-    description:
-      "A task tracker with authentication, validation, and error handling. Features a clean UI and solid state management.",
+    description: t("projectsExperience.projects.todoApp.description"),
   },
   {
     iconUrl: snapgram,
     theme: "btn-back-black",
     link: "https://github.com/BiteCreators",
     name: "Social Media Platform (Internship)",
-    description:
-      "A full-featured social network built in a team. Includes a public app, admin panel, messenger, and a custom Radix UI-based component library.",
+    description: t("projectsExperience.projects.snapgram.description"),
   },
   {
     iconUrl: snake,
     theme: "btn-back-green",
     name: "Snake Game Component",
     link: "https://github.com/fireonex/snake-game-component",
-    description:
-      "A responsive Snake game built as a React component. Mobile-friendly and embeddable as a loader or mini-game.",
+    description: t("projectsExperience.projects.snake.description"),
   },
 ];

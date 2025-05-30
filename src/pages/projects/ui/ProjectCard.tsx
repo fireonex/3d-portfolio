@@ -1,15 +1,9 @@
 import { cn } from "@/shared";
 import { Link } from "react-router-dom";
 import { arrow } from "@/assets/icons";
+import { ProjectType } from "@/shared";
 
-type Project = {
-  name: string;
-  link: string;
-  theme?: string;
-  iconUrl: string;
-  description: string;
-};
-export const ProjectCard = ({ project }: { project: Project }) => {
+export const ProjectCard = ({ project }: { project: ProjectType }) => {
   return (
     <div className={"lg:w-[400px] w-full"}>
       <div className={"block-container w-12 h-12"}>

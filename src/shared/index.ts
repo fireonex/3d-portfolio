@@ -1,5 +1,5 @@
 export * from "./libs";
-export * from "./utils";
+export * from "./locales";
 export * from "./3d-models";
 export * from "./constants";
 export * from "./components";
