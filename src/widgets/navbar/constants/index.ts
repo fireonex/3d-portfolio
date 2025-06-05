@@ -1,1 +1,1 @@
-export { navItems } from "./navItems";
+export { getNavItems } from "./navItems";

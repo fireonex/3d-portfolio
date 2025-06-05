@@ -1,4 +1,6 @@
 import { FormState } from "../model";
+import { tKeys } from "@/shared";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   form: FormState;
@@ -17,6 +19,7 @@ export const ContactForm = ({
   handleSubmit,
   handleChange,
 }: Props) => {
+  const { t } = useTranslation();
   return (
     <form onSubmit={handleSubmit} className={"w-full flex flex-col gap-7 mt-14"}>
       <label className={"text-black-500 font-semibold"}>
@@ -28,9 +31,9 @@ export const ContactForm = ({
           value={form.name}
           className={"input"}
           onBlur={handleBlur}
-          placeholder={"John"}
           onFocus={handleFocus}
           onChange={handleChange}
+          placeholder={t(tKeys.contact.placeholders.name)}
         />
       </label>
       <label className={"text-black-500 font-semibold"}>
@@ -44,7 +47,7 @@ export const ContactForm = ({
           onBlur={handleBlur}
           onFocus={handleFocus}
           onChange={handleChange}
-          placeholder={"john@gmail.com"}
+          placeholder={t(tKeys.contact.placeholders.email)}
         />
       </label>
       <label className={"text-black-500 font-semibold"}>
@@ -58,7 +61,7 @@ export const ContactForm = ({
           onFocus={handleFocus}
           className={"textarea"}
           onChange={handleChange}
-          placeholder={"Let me know how I can help you!"}
+          placeholder={t(tKeys.contact.placeholders.message)}
         />
       </label>
       <button
@@ -70,7 +73,7 @@ export const ContactForm = ({
         onFocus={handleFocus}
         onSubmit={() => handleSubmit}
       >
-        {isLoading ? "Sending..." : "Send message"}
+        {isLoading ? t(tKeys.contact.sending) : t(tKeys.contact.send)}
       </button>
     </form>
   );

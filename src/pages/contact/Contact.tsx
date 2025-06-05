@@ -1,8 +1,11 @@
-import { Alert } from "@/shared";
+import { Alert, tKeys } from "@/shared";
 import { ContactForm, ContactDragonComponent } from "./ui";
 import { useContactForm, useContactDragon } from "./model";
+import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
+  const { t } = useTranslation();
+
   const { dragonScale, dragonPosition, dragonRotation, animationSpeed, setAnimationSpeed } =
     useContactDragon();
 
@@ -15,7 +18,7 @@ export const Contact = () => {
     >
       {alert.show && <Alert type={alert.type} text={alert.text} />}
       <div className={"flex-1 min-w-[50%] flex flex-col"}>
-        <h1 className={"head-text"}>Get in Touch</h1>
+        <h1 className={"head-text"}>{t(tKeys.contact.title)}</h1>
         <ContactForm
           form={form}
           isLoading={isLoading}

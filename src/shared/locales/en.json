@@ -54,6 +54,27 @@
       }
     }
   },
+  "CTA": {
+    "title1": "Have a project in mind? ",
+    "title2": "Let's build something together!",
+    "contact": "Contact"
+  },
+  "navbar": {
+    "projects": "Projects",
+    "contact": "Contact",
+    "about": "About",
+    "menu": "Menu"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "send": "Send message",
+    "sending": "Sending...",
+    "placeholders": {
+      "name": "John",
+      "email": "john@gmail.com",
+      "message": "Let me know how I can help you!"
+    }
+  },
   "errors": {
     "required_field": "This field is required",
     "invalid_email": "Invalid email address"
