@@ -1,3 +1,3 @@
 // @ts-ignore
-import Skybox from "./skybox2.glb";
+import Skybox from "./skybox4.glb";
 export { Skybox };

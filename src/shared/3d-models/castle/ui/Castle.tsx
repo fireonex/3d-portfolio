@@ -46,7 +46,8 @@ export function Castle({ isRotating, setIsRotating, setCurrentStage, ...props }:
     }
 
     // Ограничиваем скорость
-    rotationSpeed.current = Math.min(rotationSpeed.current, 0.1);
+    const maxSpeed = 0.01;
+    rotationSpeed.current = Math.max(Math.min(rotationSpeed.current, maxSpeed), -maxSpeed);
 
     // Применяем вращение
     castleRef.current.rotation.y += rotationSpeed.current;
