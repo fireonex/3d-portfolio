@@ -29,10 +29,34 @@ export const tKeys = {
     send: "contact.send",
     title: "contact.title",
     sending: "contact.sending",
+    labels: {
+      name: "contact.labels.name",
+      email: "contact.labels.email",
+      message: "contact.labels.message",
+    },
     placeholders: {
       name: "contact.placeholders.name",
       email: "contact.placeholders.email",
       message: "contact.placeholders.message",
+    },
+  },
+  home: {
+    about: {
+      text: "home.about.text",
+      btnText: "home.about.btnText",
+    },
+    contact: {
+      text: "home.contact.text",
+      btnText: "home.contact.btnText",
+    },
+    projects: {
+      text: "home.projects.text",
+      btnText: "home.projects.btnText",
+    },
+    title: {
+      name: "home.title.name",
+      greetings: "home.title.greetings",
+      profession: "home.title.profession",
     },
   },
 } as const;

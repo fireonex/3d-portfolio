@@ -23,7 +23,7 @@ export const ContactForm = ({
   return (
     <form onSubmit={handleSubmit} className={"w-full flex flex-col gap-7 mt-14"}>
       <label className={"text-black-500 font-semibold"}>
-        Name
+        {t(tKeys.contact.labels.name)}
         <input
           required
           type={"text"}
@@ -37,7 +37,7 @@ export const ContactForm = ({
         />
       </label>
       <label className={"text-black-500 font-semibold"}>
-        Email
+        {t(tKeys.contact.labels.email)}
         <input
           required
           type={"email"}
@@ -51,7 +51,7 @@ export const ContactForm = ({
         />
       </label>
       <label className={"text-black-500 font-semibold"}>
-        Your message
+        {t(tKeys.contact.labels.message)}
         <textarea
           rows={4}
           required

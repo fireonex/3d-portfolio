@@ -9,34 +9,32 @@ type Language = "en" | "ru";
 export const LanguageSelect = () => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+
   const changeLanguage = (lng: Language) => {
-    navigate(`/${lng}` + window.location.pathname.replace(`/${i18n.language}`, ""));
+    const newPath = window.location.pathname.replace(/^\/(en|ru)/, `/${lng}`);
+    navigate(newPath);
   };
+
   const isSmallScreen = useMediaQuery("(max-width: 640px)");
 
   return (
-    <Select onValueChange={(lng: Language) => changeLanguage(lng)}>
+    <Select
+      value={i18n.language as Language}
+      onValueChange={(lng: Language) => changeLanguage(lng)}
+    >
       <SelectTrigger
         className={cn(
           "w-[70px] text-lg font-medium text-black",
           isSmallScreen && "border-none outline-none shadow-none pl-0 pt-0 focus:ring-white",
         )}
       >
-        <SelectValue placeholder="En" className={"flex justify-between items-center"} />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem
-          value="en"
-          onClick={() => changeLanguage("en")}
-          className={"text-base font-medium text-black"}
-        >
+        <SelectItem value="en" className="text-base font-medium text-black">
           En
         </SelectItem>
-        <SelectItem
-          value="ru"
-          onClick={() => changeLanguage("ru")}
-          className={"text-base font-medium text-black"}
-        >
+        <SelectItem value="ru" className="text-base font-medium text-black">
           Ru
         </SelectItem>
       </SelectContent>

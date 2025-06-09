@@ -69,10 +69,34 @@
     "title": "Get in Touch",
     "send": "Send message",
     "sending": "Sending...",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Your message"
+    },
     "placeholders": {
       "name": "John",
       "email": "john@gmail.com",
       "message": "Let me know how I can help you!"
+    }
+  },
+  "home": {
+    "title": {
+      "greetings": "Hi, I am ",
+      "name": "Maria",
+      "profession": "A Software Engineer from Russia."
+    },
+    "projects": {
+      "btnText": "Learn more about me",
+      "text": "Need a project done or looking for a dev? I'm just a few keystrokes away"
+    },
+    "contact": {
+      "btnText": "Let's talk",
+      "text": "Led multiple projects to success over the years. Curious about the impact?"
+    },
+    "about": {
+      "btnText": "Learn more about me",
+      "text": "Worked with many companies and picked up many skills along the way"
     }
   },
   "errors": {
