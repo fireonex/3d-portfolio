@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const useCastle3dModel = () => {
   const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
+  const [currentStage, setCurrentStage] = useState(2);
   const adjustCastleForScreenSize = () => {
     let screenScale;
     let screenPosition = [-3, -10.5, -26];
