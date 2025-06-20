@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  assetsInclude: ["**/*.glb"],
+  assetsInclude: ["**/*.glb", "**/*.fbx", "**/*.obj"],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
