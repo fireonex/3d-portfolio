@@ -14,6 +14,6 @@ export const socialLinks = [
   {
     name: "Telegram",
     iconUrl: telegram,
-    link: "https://t.me/empireladysith",
+    link: "https://t.me/fireonexxx",
   },
 ];

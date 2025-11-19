@@ -1,4 +1,4 @@
-import { inctbc, afishus } from "@/assets/images";
+import { afishus } from "@/assets/images";
 import { TFunction } from "i18next";
 
 export const getExperiences = (t: TFunction) => [
@@ -16,8 +16,8 @@ export const getExperiences = (t: TFunction) => [
     ],
   },
   {
-    icon: inctbc,
-    iconBg: "#000000",
+    icon: afishus,
+    iconBg: "#ffffff",
     date: t("workExperience.experiences.inctbc.date"),
     title: t("workExperience.experiences.inctbc.title"),
     company_name: t("workExperience.experiences.inctbc.company_name"),
