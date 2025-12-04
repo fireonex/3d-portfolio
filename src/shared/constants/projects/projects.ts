@@ -25,9 +25,9 @@ export const getProjects = (t: TFunction) => [
   },
   {
     iconUrl: snake,
-    theme: "btn-back-green",
-    name: "Snake Game Component",
-    link: "https://github.com/fireonex/snake-game-component",
-    description: t("projectsExperience.projects.snake.description"),
+    name: "Afishus",
+    theme: "btn-back-yellow",
+    link: "https://test.afishus.ru/",
+    description: t("projectsExperience.projects.afishus.description"),
   },
 ];

@@ -28,8 +28,8 @@
   box-shadow: 16px 0 40px #e4e4e4;
 }
 
-.block-container .btn-back-green {
-  background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%);
+.block-container .btn-back-yellow {
+  background: linear-gradient(135deg, #fdc3a2 -20%, #f3b711 120%);
 }
 
 .block-container .btn-back-blue {
